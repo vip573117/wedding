@@ -1,0 +1,36 @@
+<!-- pages/expend/expend.wxml -->
+<form action="">
+  <view class="icon-wrap">
+    <!-- 循环 -->
+    <block wx:for="{{iconList}}" wx:key="id">
+      <view class="icon-item" bindtap="selectItem" data-title="{{item.txt}}" data-icon="{{item.pic}}" data-id="{{item.id}}" data-num="{{item.num}}">
+        <image class="icon" src="../../images/icon/{{item.pic}}.png"></image>
+        <text class="icon-txt">{{item.txt}}</text>
+      </view>
+    </block>
+    <!-- 自定义 -->
+    <view class="icon-item">
+      <image class="icon" src="../../images/icon/custom.png"></image>
+      <text class="icon-txt">自定义</text>
+    </view>
+  </view>
+  <view class="expend-wrap" style="display:{{display}}">
+    <view class="expend-item clearfix">
+      <image class="icon expend-icon" src="../../images/icon/{{curPic}}.png"></image>
+      <view class="expend clearfix">
+        <input class="icon-input" type="text" value="{{curTxt}}" disabled="{{true}}" />
+        <view class="right-input">
+          <input type="text" value="{{curNum}}"/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="submit-wrap" style="display:{{display}}">
+    <image class="submit-pic" src="../../images/index/submit.png"></image>
+  </view>
+  <view class="btn-wrap">
+    <button class="submit-btn" type="submit" bindtap="toIndex"></button>
+  </view>
+</form>
+<!-- <text>婚车</text>
+      <text style="float:right;">0.00</text> -->

@@ -1,0 +1,180 @@
+<!-- index.wxml -->
+<view class="container">
+  <form>
+    <!-- 背景 -->
+    <image class='index-bg' src="../../images/index/bg.png"></image>
+    <!-- 所有内容 -->
+    <view class='wrapper'>
+      <!-- 弹窗口 -->
+      <view class='popup-bg' style="display:{{popupShow}}" bindtap='ctrlPopup'></view>
+      <view class='popup' style="display:{{popupShow}}">
+        <text class='popup-title'>{{curTxt}}</text>
+        <!-- 弹窗表单循环 -->
+        <block wx:for="{{curInputList}}">
+          <input class='my-input' placeholder='{{item.place}}'></input>
+        </block>
+        <view class='btn-area clearfix'>
+          <button type='submit' class='my-btn default' bindtap='ctrlPopup'>完成</button>
+          <button class='my-btn error' bindtap='ctrlPopup'>跳过</button>
+        </view>
+      </view>
+      <!-- 题目 -->
+      <view class='title' style="display:{{style.titleShow}}">
+        <image class='title-img' src='../../images/index/title.png'></image>
+      </view>
+      <!-- 时间 -->
+      <view class='time-wrap'>
+        <view class='time' style='padding-top:{{style.timePdTop}};padding-bottom:{{style.timePdBot}}'>
+          <text class='time-word' bindtap="toIndex">您还未设置您的婚礼信息</text>
+          <view class='setting' bindtap="toDate">前往设置</view>
+        </view>
+      </view>
+      <!-- 表单展开背景 -->
+      <view class='form-wrap'>
+        <view class='form-bg' style='display:{{style.formBgShow}}'>
+          <!-- 结婚事项 -->
+          <scroll-view class="{{tabIndex == 0 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
+            <view class="items">
+              <view wx:for="{{list}}" wx:key="{{index}}">
+                <view wx:if="{{index==0}}" class="item" bindtap="ctrlPopup" data-inputList="{{item.inputList}}" data-txt="{{item.txt}}">
+                  <image class="date-img" src="../../images/icon/date.png"></image>
+                  <view class="date-word">
+                    <text>婚前</text>
+                  </view>
+                  <view class="date-num">
+                    <text style="font-size:30px">{{item.time}}</text>
+                    <text>天</text>
+                  </view>
+                  <text class='item-txt'>{{item.txt}}</text>
+                  <image class='true' style="margin-top:82rpx;" bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
+                </view>
+                <view wx:if="{{index!=0}}" class="item" bindtap="ctrlPopup"  data-inputList="{{item.inputList}}" data-txt="{{item.txt}}">
+                  <text class="item-time">婚前{{item.time}}天</text>
+                  <text class='item-txt' style="width:270rpx;">{{item.txt}}</text>
+                  <image class='true' bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+          <!-- 开销记录 -->
+          <scroll-view class="{{tabIndex == 1 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
+            <!-- 一天 -->
+            <block wx:for="{{expendList}}" wx:key="id">
+              <view class='expend-day'>
+                <!-- 时间和支出 -->
+                <view class='expend-time'>
+                  <text class='day'>{{item.day}}</text>
+                  <text class='week'>{{item.week}}</text>
+                  <view class='expend clearfix'>
+                    <text>支出：</text>
+                    <text>{{item.expend}}</text>
+                  </view>
+                </view>
+                <view wx:for="{{item.expdata}}" wx:key="id" wx:for-item="exp" class='expend-item clear-fix'>
+                  <image class='expend-pic' src='../../images/icon/{{exp.pic}}.png'></image>
+                  <text class='expend-title'>{{exp.title}}</text>
+                  <text class='expend-num'>{{exp.num}}</text>
+                </view>
+              </view>
+            </block>
+          </scroll-view>
+          <!-- 电子请柬 -->
+          <scroll-view class="{{tabIndex == 2 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
+            <view class='invit-wrap'>
+              <view class='invit-row clearfix'>
+                <block wx:for="{{invitList}}" wx:key="id">
+                  <view class='invit-bg'>
+                    <image class='invit-pic' src='../../images/invit/{{item.pic}}.png'></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </scroll-view>
+          <!-- 已完成1 -->
+          <scroll-view class="{{tabIndex == 3 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
+            <view class="items">
+              <view wx:for="{{list}}" wx:key="{{index}}" wx:if="{{item.finish == true}}">
+                <view class="item" bindtap="ctrlPopup">
+                  <text class="item-time">婚前{{item.time}}天</text>
+                  <text class='item-txt' style="width:270rpx;">{{item.txt}}</text>
+                  <image class='true' bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+          <!-- 已完成2 -->
+          <scroll-view class="{{tabIndex == 4 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
+            <block wx:for="{{expendList}}" wx:key="id">
+              <view class='expend-day'>
+                <!-- 时间和支出 -->
+                <view class='expend-time'>
+                  <text class='day'>{{item.day}}</text>
+                  <text class='week'>{{item.week}}</text>
+                  <view class='expend clearfix'>
+                    <text>支出：</text>
+                    <text>{{item.expend}}</text>
+                  </view>
+                </view>
+                <view wx:for="{{item.expdata}}" wx:key="id" wx:for-item="exp" wx:if="{{exp.finish == true}}" class='expend-item clear-fix'>
+                  <image class='expend-pic' src='../../images/icon/{{exp.pic}}.png'></image>
+                  <text class='expend-title'>{{exp.title}}</text>
+                  <text class='expend-num'>{{exp.num}}</text>
+                </view>
+              </view>
+            </block>
+          </scroll-view>
+          <!-- 已完成3 -->
+          <scroll-view class="{{tabIndex == 5 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
+            <view class='invit-wrap'>
+              <view class='invit-row clearfix'>
+                <block wx:for="{{invitList}}" wx:if="{{item.finish == true}}" wx:key="id">
+                  <view class='invit-bg'>
+                    <image class='invit-pic' src='../../images/invit/{{item.pic}}.png'></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        <!-- 添加事项按钮 -->
+        <view class='add-wrap' style='display:{{addShow}}'>
+          <image class='add-icon' src='../../images/icon/{{iconPic}}.png' bindtap="toAdd"></image>
+        </view>
+      </view>
+      <!-- 底部导航 -->
+      <view class='tab-wrap' style="top:{{style.tabTop}};">
+        <view class='tab-bg' style='padding-top:{{style.tabPadTop}}'>
+          <view class='tab'>
+            <view data-id='0' class="tab-item {{tabIndex == 0 ? 'active' : ''}}" bindtap='tabShow'>
+              <image class='tab-pic pic1' src="{{tabIndex == 0 ?'../../images/icon/item-ac.png':'../../images/icon/item.png'}}"></image>
+              <text class='tab-word'>结婚事项</text>
+            </view>
+            <view data-id='1' class="tab-item {{tabIndex == 1 ? 'active' : ''}}" bindtap='tabShow'>
+              <image class='tab-pic pic2' src="{{tabIndex == 1 ?'../../images/icon/cal-ac.png' :'../../images/icon/cal.png'}}"></image>
+              <text class='tab-word'>开销记录</text>
+            </view>
+            <view data-id='2' class="tab-item {{tabIndex == 2 ? 'active' : ''}}" bindtap='tabShow' style='border:none;'>
+              <image class='tab-pic pic3' src="{{tabIndex == 2 ?'../../images/icon/msg-ac.png' :'../../images/icon/msg.png'}}"></image>
+              <text class='tab-word'>电子请柬</text>
+            </view>
+            <view data-id='3' class="small-btn {{tabIndex == 3 ? 'active' : ''}}" bindtap='tabShow'>
+              <view class="record {{tabIndex == 3 ? 'record-active' : ''}}">
+                <text>已完成<text>0</text>项</text>
+              </view>
+            </view>
+            <view data-id='4' class="small-btn {{tabIndex == 4 ? 'active' : ''}}" bindtap='tabShow'>
+              <view class="record {{tabIndex == 4 ? 'record-active' : ''}}">
+                <text>已完成<text>0</text>笔</text>
+              </view>
+            </view>
+            <view data-id='5' class="small-btn {{tabIndex == 5 ? 'active' : ''}}" bindtap='tabShow'>
+              <view class="record {{tabIndex == 5 ? 'record-active' : ''}}">
+                <text>已完成<text>0</text>次</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </form>
+</view>

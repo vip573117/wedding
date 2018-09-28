@@ -1,0 +1,48 @@
+<!-- pages/add/add.wxml -->
+<view class='container bg'>
+  <form>
+    <view class="group">
+      <van-cell-group>
+        <van-cell>
+          <view slot="title">
+            <image class="left-icon" src="../../images/icon/folder.png"></image>
+            <!-- <text class="title">事项名称</text> -->
+            <van-field class="input" name="" value="{{ value }}" placeholder="事项名称" border="{{ false }}"/>
+          </view>
+        </van-cell>
+        <picker mode="date" value="{{starDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindStartDateChange">
+          <van-cell is-link>
+            <view slot="title">
+              <image class="left-icon" style="margin-right:30rpx" src="../../images/icon/time.png"></image>
+              <text class="title">开始时间</text>
+            </view>
+          </van-cell>
+        </picker>
+        <picker mode="date" value="{{endDate}}" start="2015-09-01" end="2017-09-01" bindchange="bindEndDateChange">
+          <van-cell is-link>
+            <view slot="title">
+              <image class="left-icon" style="margin-right:30rpx" src="../../images/icon/time1.png"></image>
+              <text class="title">结束时间</text>
+            </view>
+          </van-cell>
+        </picker>
+      </van-cell-group>
+    </view>
+
+    <view class="group">
+      <view class="text-bg clearfix">
+        <!-- <image class="left-icon float-left" src="/images/icon/write.png"></image> -->
+        <textarea class="my-area float-left" name="" id="" cols="25" rows="10" placeholder="备注信息"></textarea>
+      </view>
+    </view>
+
+    <view class="wrap">
+      <image class="submit" src="../../images/index/submit.png"></image>
+    </view>
+
+    <view class="btn-wrap">
+      <button class="submit-btn" type="submit" bindtap="toIndex"></button>
+    </view>
+
+  </form>
+</view>

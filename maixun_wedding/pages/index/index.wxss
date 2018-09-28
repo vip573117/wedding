@@ -1,0 +1,415 @@
+/**index.wxss**/
+
+/* 首页背景 */
+
+.index-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* 外壳 */
+
+.wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* 题目 */
+
+.title {
+    text-align: center;
+    margin-top: 275rpx;
+}
+
+.title-img {
+    width: 454rpx;
+    height: 179rpx;
+}
+
+/* 时间内容 */
+
+.time-wrap {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+}
+
+.time {
+    width: 74%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 60rpx 40rpx;
+    font-size: 0.75rem;
+    box-shadow: 1px 1px 1px 1px #999;
+}
+
+.time-word {
+    color: #97c2fa;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+/* 设置按钮 */
+
+.setting {
+    float: right;
+    color: #fff;
+    padding: 10rpx 20rpx;
+    background-color: #97c2fa;
+    border-radius: 12px;
+}
+
+/* 表单项 */
+
+/* 背景 */
+
+.form-wrap {
+    position: absolute;
+    top: 3%;
+    width: 100%;
+}
+
+.form-bg {
+    margin: 0 auto;
+    width: 92%;
+    height: 916rpx;
+    background-color: #f1f1f1;
+    padding-top: 60rpx;
+    /* padding-bottom: 30rpx; */
+}
+
+/* 内容 */
+
+/* .form-item {
+    margin: 0 auto;
+    margin-bottom: 30rpx;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 30rpx 40rpx;
+    font-size: 0.75rem;
+    box-shadow: 2px 2px 2px 2px #f5f5f5;
+}
+
+.item-time {
+    color: #75b1f9;
+    margin-left: 20rpx;
+    float: left;
+}
+
+.item-pic {
+    width: 173rpx;
+    height: 189rpx;
+    vertical-align: middle;
+}
+
+.item-txt {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 340rpx;
+    display: block;
+    float: left;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+} */
+
+/* 结婚事项样式 */
+.items {
+    padding: 10rpx 39rpx;
+}
+
+
+.item{
+    position: relative;
+    background-color:#fff;
+    padding:20rpx 20rpx;
+    font-size:16px;
+    margin-top:10rpx;
+    border-radius: 6px;
+}
+
+.date-img{
+    width: 173rpx;
+    height: 189rpx;
+    vertical-align: middle;
+}
+
+.date-word{
+    position: absolute;
+    top: 34rpx;
+    text-align: center;
+    width: 173rpx;
+    color: #fff;
+}
+
+.date-num{
+    position: absolute;
+    top: 96rpx;
+    text-align: center;
+    width: 173rpx;
+    color: #fff;
+}
+
+.item-txt{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 270rpx;
+    display: inline-block;
+    margin-left: 40rpx;
+    /* margin-right: 40rpx; */
+    vertical-align: middle;
+}
+
+.item-time {
+    color: #75b1f9;
+    margin-left: 20rpx;
+    vertical-align: middle;
+    display: inline-block;
+    /* float: left; */
+}
+
+/* 小勾图 */
+.true{
+    width: 30rpx;
+    height: 30rpx;
+    /* vertical-align: middle; */
+    float: right;
+    margin-right: 20rpx;
+    margin-top: 10rpx;
+}
+
+/* 开销记录页 */
+
+.expend-day {
+    padding: 10rpx 39rpx;
+}
+
+.expend-time {
+    font-size: 12px;
+    color: #222;
+    opacity: 0.6;
+    padding: 20rpx 20rpx;
+}
+
+.day,
+.week {
+    margin-right: 20rpx;
+}
+
+.expend {
+    float: right;
+}
+
+.expend-item {
+    background-color: #fff;
+    border-top: 1px solid #f1f1f1;
+    padding: 20rpx 20rpx;
+    font-size: 16px;
+    margin-top: 10rpx;
+}
+
+.expend-pic {
+    width: 86rpx;
+    height: 86rpx;
+    vertical-align: middle;
+}
+
+.expend-title {
+    margin-left: 20rpx;
+}
+
+.expend-num {
+    float: right;
+    margin-top: 20rpx;
+}
+
+/* 电子请柬 */
+
+
+.invit-bg {
+    background: #fff;
+    border-radius: 4px;
+    width: 280rpx;
+    height: 450rpx;
+    float: left;
+    margin-left: 45rpx;
+    margin-bottom: 20rpx;
+}
+
+.invit-row {
+    margin-top: 20rpx;
+}
+
+.invit-pic {
+    width: 100%;
+    height: 100%;
+}
+
+.right-pic {
+    margin-left: 50rpx;
+}
+
+/* 添加图标 */
+
+.add-wrap {
+    position: absolute;
+    top: 710rpx;
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+}
+
+.add-icon {
+    width: 164rpx;
+    height: 164rpx;
+}
+
+
+
+/* tab */
+
+.tab-wrap {
+    position: absolute;
+    top: 42%;
+    width: 100%;
+    z-index: 2;
+}
+
+.tab-bg {
+    margin: 0 auto;
+    width: 92%;
+    background-color: #fff;
+    padding-top: 130rpx;
+    padding-bottom: 50rpx;
+}
+
+.tab-item {
+    width: 153rpx;
+    padding-left: 39rpx;
+    padding-right: 39rpx;
+    display: inline-block;
+    border-right: 1px solid #f1f1f1;
+    margin-top: 40rpx;
+    text-align: center;
+}
+
+/* tab文字 */
+
+.tab-word {
+    display: block;
+}
+
+/* tab的三个icon */
+
+.tab-pic {
+    margin: 0 auto;
+    display: block;
+}
+
+.pic1 {
+    width: 47rpx;
+    height: 44rpx;
+    margin-bottom: 20rpx;
+}
+
+.pic2 {
+    width: 32rpx;
+    height: 42rpx;
+    margin-bottom: 20rpx;
+}
+
+.pic3 {
+    width: 46rpx;
+    height: 32rpx;
+    margin-bottom: 20rpx;
+}
+
+/* 底部小按钮 */
+
+.small-btn {
+    width: 152rpx;
+    padding-left: 39rpx;
+    padding-right: 39rpx;
+    display: inline-block;
+    border-right: 1px solid #f1f1f1;
+    /* margin-top: 40rpx; */
+}
+
+/* 已完成记录以及active */
+
+.record {
+    margin-top: 10rpx;
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.record-active {
+    color: #fff;
+    background-color: #75b1f9;
+}
+
+/* 弹窗 */
+
+.popup-bg {
+    position: absolute;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    opacity: 0.4;
+}
+
+.popup {
+    position: absolute;
+    width: 490rpx;
+    /* height: 460rpx; */
+    top: 210rpx;
+    left: 90rpx;
+    background-color: #fff;
+    opacity: 1;
+    z-index: 7;
+    text-align: center;
+    padding: 40rpx 40rpx;
+}
+
+/* 弹窗表单 */
+
+.my-input {
+    text-align: left;
+    background-color: #f5f5f5;
+    padding: 15rpx 40rpx;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-top: 40rpx;
+}
+
+/* 弹窗按钮 */
+
+.btn-area {
+    margin-top: 60rpx;
+}
+
+.my-btn {
+    width: 200rpx;
+    color: #fff;
+    letter-spacing: 2px;
+    border-radius: 16px;
+    float: left;
+    text-align: center;
+}
+
+.my-btn.default {
+    margin-right: 90rpx;
+}
+
+

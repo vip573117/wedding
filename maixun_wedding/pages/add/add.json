@@ -1,0 +1,22 @@
+{
+  "navigationBarTitleText": "新增事项",
+  "usingComponents": {
+      "van-button": "../../dist/button/index",
+      "van-row": "../../dist/row/index",
+      "van-col": "../../dist/col/index",
+      "van-cell": "../../dist/cell/index",
+      "van-cell-group": "../../dist/cell-group/index",
+      "van-icon": "../../dist/icon/index",
+      "van-badge": "../../dist/badge/index",
+      "van-badge-group": "../../dist/badge-group/index",
+      "van-loading": "../../dist/loading/index",
+      "van-popup": "../../dist/popup/index",
+      "van-tab": "../../dist/tab/index",
+      "van-tabs": "../../dist/tabs/index",
+      "van-tabbar": "../../dist/tabbar/index",
+      "van-tabbar-item": "../../dist/tabbar-item/index",
+      "van-transition": "../../dist/transition/index",
+      "van-toast": "../../dist/toast/index",
+      "van-field": "../../dist/field/index"
+  }
+}
