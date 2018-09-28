@@ -11,7 +11,7 @@ Page({
     wid:''
   },
 
-  onLoad: function() {
+  onLoad: function(e) {
     wx.showLoading({
       title: 'Loading',
       mask: true
@@ -39,11 +39,13 @@ Page({
               openid: 3215644
             },
             success: function (res) {
+              console.log(res)
               if (res.data.code == 200){
                 app.openid = res.data.data.openid
                 app.user = res.data.data.info
                 page.setData({
-                  wid: res.data.data.info.id
+                  wid: res.data.data.info.id,
+                  date: res.data.data.info.date,
                 })
               }
               else if (res.data.code == 201){
@@ -160,8 +162,10 @@ Page({
 
   //跳转到修改时间页面
   toDate: function(e) {
+    var page =this
+    var wid =page.data.wid 
     wx.navigateTo({
-      url: '../date/date'
+      url: '../date/date?wid=' + wid
     });
   },
 

@@ -13,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log(options.wid)
   },
 
   bindDateChange: function(e) {
@@ -23,7 +23,7 @@ Page({
     });
   },
   formSubmit:function(e){
-    console.log(e.detail.value)
+    console.log(e.detail.value) 
     console.log(app.openid)
     var page =this
     if (page.data.date=='') {
@@ -72,37 +72,52 @@ Page({
       return false;
     }
     app.util.request({
-      url: 'entry/wxapp/index',
+      url: 'entry/wxapp/addwedding',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
         //'content-type': 'application/json'
       },
       method: 'POST',
       data: {
+        wid: e.detail.value.wid,
         openid: app.openid,
         bride: e.detail.value.bride,
         bridephone: e.detail.value.bridephone,
         groom: e.detail.value.groom,
         groomphone: e.detail.value.groomphone,
-        weddate: page.data.date
+        weddate: page.data.date,
+        role_type:1
       },
       success: function (res) {
-        if (res.data.code == 200) {
-          app.openid = res.data.data.openid
-          app.user = res.data.data.user
-          page.setData({
-            wid: res.data.data.user
-          })
-          wx.redirectTo({
-            url: '../../pages/index/index?redIndex=9'
-          });
-        }
-        else if (res.data.code == 201) {
-          app.openid = res.data.data.openid
-        } else {
-
-        }
         console.log(res)
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+          setTimeout(function () {
+            wx.redirectTo({
+              url: '../../pages/index/index?redIndex=9'
+            });
+          }, 2000)
+        }
+        else if (res.data.code >= 201 && res.data.code <= 205) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: '网络请求错误',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
       },
       fail: function () {
         wx.hideLoading()

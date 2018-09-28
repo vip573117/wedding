@@ -13,7 +13,6 @@
             </view>
           </van-cell>
         </picker>
-
         <van-cell>
           <view slot="title">
             <image class="left-icon" src="../../images/icon/name.png"></image>
