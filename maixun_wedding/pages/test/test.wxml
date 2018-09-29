@@ -4,4 +4,5 @@
   <input class='my-input' placeholder='请输入租车地址'></input>
   <input class='my-input' placeholder='请输入租车公司名称'></input>
   <input class='my-input' placeholder='请输入租车公司电话'></input>
+  <input class='my-input' placeholder='请输入租车公司电话'></input>
 </block>
