@@ -36,12 +36,36 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
 					"name": "we7_wxappdemo、footer",
-					"pathName": "we7_wxappdemo/pages/footer/footer"
+					"pathName": "we7_wxappdemo/pages/footer/footer",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "add",
+					"pathName": "maixun_wedding/pages/add/add",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "date",
+					"pathName": "maixun_wedding/pages/date/date",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "expend",
+					"pathName": "maixun_wedding/pages/expend/expend",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "index",
+					"pathName": "maixun_wedding/pages/index/index"
 				}
 			]
 		}

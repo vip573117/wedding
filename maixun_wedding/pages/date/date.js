@@ -18,7 +18,6 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
     console.log(options.wid)
     var page= this
     page.setData({
@@ -64,8 +63,6 @@ Page({
       date: e.detail.value
     });
   },
-  formSubmit:function(e){
-    console.log(e.detail.value) 
     console.log(app.openid)
     var page =this
     var wid= page.data.wid 
@@ -167,6 +164,40 @@ Page({
         fail: function () {
           wx.hideLoading()
         }
+    var page = this
+    if (page.data.date == '') {
+      wx.showToast({
+        title: '请选择婚礼日期',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (!e.detail.value.bride || e.detail.value.bride == '') {
+      wx.showToast({
+        title: '请填写新娘姓名',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (e.detail.value.bridephone == '' || !e.detail.value.bridephone) {
+      wx.showToast({
+        title: '请填写新娘电话',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (e.detail.value.groom == '' || !e.detail.value.groom) {
+      wx.showToast({
+        title: '请填写新郎姓名',
+        icon: 'none',
+        duration: 2000,
+        mask: true
       })
     } else {
       app.util.request({
@@ -202,6 +233,59 @@ Page({
         }
       })
     }
+    app.util.request({
+      url: 'entry/wxapp/addwedding',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+        wid: e.detail.value.wid,
+        openid: app.openid,
+        bride: e.detail.value.bride,
+        bridephone: e.detail.value.bridephone,
+        groom: e.detail.value.groom,
+        groomphone: e.detail.value.groomphone,
+        weddate: page.data.date,
+        role_type: 1
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+          setTimeout(function () {
+            wx.redirectTo({
+              url: '../../pages/index/index?redIndex=9'
+            });
+          }, 2000)
+        }
+        else if (res.data.code >= 201 && res.data.code <= 205) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: '网络请求错误',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading()
+      }
+
+    })
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)

@@ -83,6 +83,7 @@ Page({
       timePdBot: 25 + 'rpx',
       formBgShow: 'block',
       tabTop: 74 + '%',
+      tabTop: 980 + 'rpx',
       tabPadTop: 20 + 'rpx',
       tabMarTop: 0 + 'rpx'
     };
@@ -169,6 +170,8 @@ Page({
   toDate: function(e) {
     var page =this
     var wid =page.data.wid 
+    var page = this
+    var wid = page.data.wid
     wx.navigateTo({
       url: '../date/date?wid=' + wid
     });
@@ -188,4 +191,5 @@ Page({
       });
     }
   }
+});
 });
