@@ -1,21 +1,21 @@
 {
-	"pages" : [
+  "pages": [
     "maixun_wedding/pages/index/index",
     "maixun_wedding/pages/date/date",
     "maixun_wedding/pages/add/add",
     "maixun_wedding/pages/expend/expend",
     "maixun_wedding/pages/test/test",
-		"we7_wxappdemo/pages/todo/todo",
-		"we7_wxappdemo/pages/index/index",
-		"we7_wxappdemo/pages/footer/footer",
-		"we7_wxappdemo/pages/pay/pay",
-		"we7/pages/user/index/index"
-	],
-	"window": {
-		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "微擎",
-		"navigationBarBackgroundColor": "#000",
-		"backgroundColor": "#f5f5f5",
-    "enablePullDownRefresh" : true
-	}
+    "we7_wxappdemo/pages/todo/todo",
+    "we7_wxappdemo/pages/index/index",
+    "we7_wxappdemo/pages/footer/footer",
+    "we7_wxappdemo/pages/pay/pay",
+    "we7/pages/user/index/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "微擎",
+    "navigationBarBackgroundColor": "#000",
+    "backgroundColor": "#f5f5f5",
+    "enablePullDownRefresh": true
+  }
 }

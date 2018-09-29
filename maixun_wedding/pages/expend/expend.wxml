@@ -20,7 +20,7 @@
       <view class="expend clearfix">
         <input class="icon-input" type="text" value="{{curTxt}}" disabled="{{true}}" />
         <view class="right-input">
-          <input type="text" value="{{curNum}}"/>
+          <input type="text" value="{{curNum}}" />
         </view>
       </view>
     </view>
@@ -32,5 +32,3 @@
     <button class="submit-btn" type="submit" bindtap="toIndex"></button>
   </view>
 </form>
-<!-- <text>婚车</text>
-      <text style="float:right;">0.00</text> -->

@@ -48,7 +48,7 @@
                   <text class='item-txt'>{{item.txt}}</text>
                   <image class='true' style="margin-top:82rpx;" bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
                 </view>
-                <view wx:if="{{index!=0}}" class="item" bindtap="ctrlPopup"  data-inputList="{{item.inputList}}" data-txt="{{item.txt}}">
+                <view wx:if="{{index!=0}}" class="item" bindtap="ctrlPopup" data-inputList="{{item.inputList}}" data-txt="{{item.txt}}">
                   <text class="item-time">婚前{{item.time}}天</text>
                   <text class='item-txt' style="width:270rpx;">{{item.txt}}</text>
                   <image class='true' bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
@@ -146,15 +146,15 @@
         <view class='tab-bg' style='padding-top:{{style.tabPadTop}}'>
           <view class='tab'>
             <view data-id='0' class="tab-item {{tabIndex == 0 ? 'active' : ''}}" bindtap='tabShow'>
-              <image class='tab-pic pic1' src="{{tabIndex == 0 ?'../../images/icon/item-ac.png':'../../images/icon/item.png'}}"></image>
+              <image class='tab-pic' src="{{tabIndex == 0 ?'../../images/icon/item-ac.png':'../../images/icon/item.png'}}"></image>
               <text class='tab-word'>结婚事项</text>
             </view>
             <view data-id='1' class="tab-item {{tabIndex == 1 ? 'active' : ''}}" bindtap='tabShow'>
-              <image class='tab-pic pic2' src="{{tabIndex == 1 ?'../../images/icon/cal-ac.png' :'../../images/icon/cal.png'}}"></image>
+              <image class='tab-pic' src="{{tabIndex == 1 ?'../../images/icon/cal-ac.png' :'../../images/icon/cal.png'}}"></image>
               <text class='tab-word'>开销记录</text>
             </view>
             <view data-id='2' class="tab-item {{tabIndex == 2 ? 'active' : ''}}" bindtap='tabShow' style='border:none;'>
-              <image class='tab-pic pic3' src="{{tabIndex == 2 ?'../../images/icon/msg-ac.png' :'../../images/icon/msg.png'}}"></image>
+              <image class='tab-pic' src="{{tabIndex == 2 ?'../../images/icon/msg-ac.png' :'../../images/icon/msg.png'}}"></image>
               <text class='tab-word'>电子请柬</text>
             </view>
             <view data-id='3' class="small-btn {{tabIndex == 3 ? 'active' : ''}}" bindtap='tabShow'>

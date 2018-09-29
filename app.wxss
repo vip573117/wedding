@@ -1,48 +1,49 @@
 @import 'we7/resource/style/weui.wxss';
 @import 'we7/resource/style/we7.wxss';
+
 /**app.wxss**/
-@import "/maixun_wedding/dist/common/index.wxss";
+
 page {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 form {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .show {
-    display: block;
+  display: block;
 }
 
 .active {
-    color: #75b1f9;
+  color: #75b1f9;
 }
 
 .error {
-    background-color: #d85656;
+  background-color: #d85656;
 }
 
 .default {
-    background-color: #75b1f9;
+  background-color: #75b1f9;
 }
 
 .clearfix::after {
-    display: block;
-    content: "";
-    clear: both;
+  display: block;
+  content: "";
+  clear: both;
 }

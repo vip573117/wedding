@@ -7,34 +7,22 @@ var style = {
   //显示选项表单
   formBgShow: 'none',
   //底部导航栏样式
-  tabTop: 42 + '%',
+  tabTop: 550 + 'rpx',
   tabPadTop: 130 + 'rpx',
   tabMarTop: 0 + 'rpx'
 };
 
-// var style = {
-//   titleShow: 'none',
-//   timePdTop: 15 + 'rpx',
-//   timePdBot: 25 + 'rpx',
-//   formBgShow: 'block',
-//   tabTop: 74 + '%',
-//   tabPadTop: 20 + 'rpx',
-//   tabMarTop: 0 + 'rpx'
-// };
-
 //需要数据库
 
 //结婚事项数据 id  time  txt check finish
-var list = [
-  {
+var list = [{
     id: 0,
     txtStyle: '',
     time: '15',
     txt: '计划婚庆用车',
     check: false,
     finish: true,
-    inputList: [
-      {
+    inputList: [{
         place: '婚车公司住哪哦'
       },
       {
@@ -52,8 +40,7 @@ var list = [
     txt: '买菜',
     check: true,
     finish: false,
-    inputList: [
-      {
+    inputList: [{
         place: '菜市场地址在哪？'
       },
       {
@@ -64,14 +51,12 @@ var list = [
 ];
 
 //开销记录数据 id day week expen expdata pic title num finish
-var expendList = [
-  {
+var expendList = [{
     id: 1,
     day: '9月1号',
     week: '星期五',
     expend: 60000,
-    expdata: [
-      {
+    expdata: [{
         id: 11,
         pic: 'car1',
         title: '婚车1',
@@ -99,8 +84,7 @@ var expendList = [
     day: '9月2号',
     week: '星期六',
     expend: 70000,
-    expdata: [
-      {
+    expdata: [{
         id: 21,
         pic: 'car1',
         title: '婚车4',
@@ -126,8 +110,7 @@ var expendList = [
 ];
 
 //电子请柬
-var invitList = [
-  {
+var invitList = [{
     id: 1,
     pic: 'invit1',
     finish: true

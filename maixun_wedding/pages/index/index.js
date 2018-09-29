@@ -8,7 +8,7 @@ Page({
     tabIndex: 9,
     addShow: 'none',
     popupShow: 'none',
-    wid:''
+    wid: ''
   },
 
   onLoad: function(e) {
@@ -25,7 +25,7 @@ Page({
       invitList: indexData.invitList
     });
     wx.login({
-      success: function (res) {
+      success: function(res) {
         if (res.code) {
           app.util.request({
             url: 'entry/wxapp/index',
@@ -38,24 +38,23 @@ Page({
               code: res.code,
               openid: 3215644
             },
-            success: function (res) {
+            success: function(res) {
               console.log(res)
-              if (res.data.code == 200){
+              if (res.data.code == 200) {
                 app.openid = res.data.data.openid
                 app.user = res.data.data.info
                 page.setData({
                   wid: res.data.data.info.id,
                   date: res.data.data.info.date,
                 })
-              }
-              else if (res.data.code == 201){
+              } else if (res.data.code == 201) {
                 app.openid = res.data.data.openid
-              }else{
+              } else {
 
               }
               console.log(res)
             },
-            fail: function () {
+            fail: function() {
               wx.hideLoading()
             }
 
@@ -77,7 +76,7 @@ Page({
       timePdTop: 15 + 'rpx',
       timePdBot: 25 + 'rpx',
       formBgShow: 'block',
-      tabTop: 74 + '%',
+      tabTop: 980 + 'rpx',
       tabPadTop: 20 + 'rpx',
       tabMarTop: 0 + 'rpx'
     };
@@ -162,8 +161,8 @@ Page({
 
   //跳转到修改时间页面
   toDate: function(e) {
-    var page =this
-    var wid =page.data.wid 
+    var page = this
+    var wid = page.data.wid
     wx.navigateTo({
       url: '../date/date?wid=' + wid
     });
