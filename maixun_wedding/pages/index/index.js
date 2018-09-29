@@ -44,14 +44,19 @@ Page({
                 app.openid = res.data.data.openid
                 app.user = res.data.data.info
                 page.setData({
-                  wid: res.data.data.info.id,
+                  wid: res.data.data.info.wid,
                   date: res.data.data.info.date,
                 })
               }
               else if (res.data.code == 201){
                 app.openid = res.data.data.openid
               }else{
-
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none',
+                  duration: 2000,
+                  mask: true
+                })
               }
               console.log(res)
             },
