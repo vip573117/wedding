@@ -6,7 +6,10 @@ Page({
    */
   data: {
     date:'',
-    wid:''
+    wid:'',
+    gender:['我是新郎','我是新娘'],
+    index:0
+
   },
 
   /**
@@ -123,6 +126,12 @@ Page({
         wx.hideLoading()
       }
 
+    })
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
     })
   },
 });

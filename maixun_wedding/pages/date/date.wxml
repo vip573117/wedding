@@ -1,5 +1,5 @@
 <!-- pages/date/date.wxml -->
-<view class='container bg'>
+<!-- <view class='container bg'>
   <form bindsubmit="formSubmit">
      <input  name="wid" value="{{wid}}" hidden='true'/>
     <view class="group">
@@ -51,4 +51,59 @@
       <button class="submit-btn" formType="submit" ></button>
     </view>
   </form>
+</view> -->
+
+
+<!-- pages/date/date.wxml -->
+<view class='container bg'>
+<form bindsubmit="formSubmit">
+<input name="wid" value="{{wid}}" hidden='true' />
+<view class='group'>
+<picker mode="date" value="{{date}}" bindchange="bindDateChange">
+<view class='item'>
+<image class="left-icon" style="" src="../../images/icon/time.png"></image>
+<text class='title'>选择日期</text>
+<text class="date">{{date}}</text>
+</view>
+</picker>
+<picker mode="selector" value="{{index}}" range="{{gender}}" bindchange="bindPickerChange">
+<view class='item'>
+<image class="left-icon" style="" src="../../images/icon/name.png"></image>
+<text class='title'>你是谁？</text>
+<text class="date">{{gender[index]}}</text>
+</view>
+</picker>
+</view>
+<view class='group'>
+<view class='item'>
+<image class="left-icon" style="" src="../../images/icon/name.png"></image>
+<text class='title'>新娘姓名</text>
+<input class='input' placeholder='点击输入' name="bride" value="{{ value }}"></input>
+</view>
+<view class='item'>
+<image class="left-icon" style="" src="../../images/icon/call.png"></image>
+<text class='title'>新娘电话</text>
+<input class='input' placeholder='点击输入' name="bridephone" value="{{ value1 }}"></input>
+</view>
+</view>
+<view class='group'>
+<view class='item'>
+<image class="left-icon" style="" src="../../images/icon/name.png"></image>
+<text class='title'>新郎姓名</text>
+<input class='input' placeholder='点击输入' name="groom" value="{{ value2 }}"></input>
+</view>
+<view class='item'>
+<image class="left-icon" style="" src="../../images/icon/call.png"></image>
+<text class='title'>新郎电话</text>
+<input class='input' placeholder='点击输入' name="groomphone" value="{{ value3 }}"></input>
+</view>
+</view>
+
+<view class="wrap">
+<image class="submit" src="../../images/index/submit.png"></image>
+</view>
+<view class="btn-wrap">
+<button class="submit-btn" formType="submit"></button>
+</view>
+</form>
 </view>
