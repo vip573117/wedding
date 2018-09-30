@@ -1,3 +1,4 @@
+
 //不需要数据库
 var style = {
   //时间盒子样式
@@ -14,41 +15,6 @@ var style = {
 
 //需要数据库
 
-//结婚事项数据 id  time  txt check finish
-var list = [{
-    id: 0,
-    txtStyle: '',
-    time: '15',
-    txt: '计划婚庆用车',
-    check: false,
-    finish: true,
-    inputList: [{
-        place: '婚车公司住哪哦'
-      },
-      {
-        place: '婚车公司的大名'
-      },
-      {
-        place: '联系婚车的电话啊'
-      },
-    ]
-  },
-  {
-    id: 1,
-    txtStyle: '',
-    time: '22',
-    txt: '买菜',
-    check: true,
-    finish: false,
-    inputList: [{
-        place: '菜市场地址在哪？'
-      },
-      {
-        place: '买菜买了多少钱啊？'
-      }
-    ]
-  }
-];
 
 //开销记录数据 id day week expen expdata pic title num finish
 var expendList = [{
@@ -108,7 +74,6 @@ var expendList = [{
     ]
   }
 ];
-
 //电子请柬
 var invitList = [{
     id: 1,
@@ -124,7 +89,6 @@ var invitList = [{
 
 module.exports = {
   style: style,
-  list: list,
   expendList: expendList,
   invitList: invitList
 };

@@ -1,11 +1,16 @@
 // pages/expend/expend.js
+const app = getApp()
 var expendData = require('../../data/expend-data.js');
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    display: 'none'
+    display: 'none',
+    zdy:'',
+    disabled:true,
+    curPic:'',
+    id:''
   },
 
   /**
@@ -16,60 +21,109 @@ Page({
       iconList: expendData.iconList
     });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () { },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () { },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () { },
+  //提交
+  additem:function(e){
+      console.log(e)
+    var page = this 
+    var money = e.detail.value.money
+    var title = e.detail.value.title
+    if (title==''){
+      wx.showToast({
+        title: '标题不能为空',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (money == '') {
+      wx.showToast({
+        title: '开销不能为空',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    app.util.request({
+      url: 'entry/wxapp/additem',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+        icon: page.data.curPic,
+        openid:app.openid,
+        wid: app.user.wid,
+        title: title,
+        money: money,
+        id:page.data.id
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200) {
+          app.kx_num = app.kx_num +1
+          wx.showToast({
+            title: '添加成功',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 2000)
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () { },
+        }
+        else if (res.data.code == 201) {
+          wx.showToast({
+            title: '未找到数据',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading()
+      }
+    })
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () { },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () { },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () { },
-
-  test: function () {
-    console.log('点击成功');
   },
-
-  toIndex: function () {
-    wx.redirectTo({
-      url: '/pages/index/index?redIndex=9'
-    });
-  },
-
   selectItem: function (e) {
     console.log(e.currentTarget);
     var cur = e.currentTarget.dataset
-    this.setData({
-      curTxt: cur.title,
-      curPic: cur.icon,
-      curNum: cur.num,
-      display: 'block'
-    })
+    if (cur.id == -1){
+      this.setData({
+        disabled:false,
+        zdy: '请输入标题',
+        curPic: cur.icon,
+        display: 'block',
+        curTxt:'',
+        id: -1
+      })
+    }else{
+      this.setData({
+        curTxt: cur.title,
+        curPic: cur.icon,
+        display: 'block',
+        id: cur.id
+      })
+    }
+   
   }
 });

@@ -7,14 +7,14 @@
         <view class='item'>
           <image class="left-icon" style="" src="../../images/icon/time.png"></image>
           <text class='title'>选择日期</text>
-          <text class="date">{{date?date:wedding_info['date']}}</text>
+          <text class="date">{{date?date:wedding_info['wd_date']}}</text>
         </view>
       </picker>
       <picker mode="selector" value="{{index}}" range="{{gender}}" bindchange="bindPickerChange">
         <view class='item'>
           <image class="left-icon" style="" src="../../images/icon/name.png"></image>
           <text class='title'>你是谁？</text>
-          <text class="date">{{myiswho==''?gender[index]:myiswho}}</text>
+          <text class="date">{{myiswho==null?gender[index]:myiswho}}</text>
         </view>
       </picker>
     </view>

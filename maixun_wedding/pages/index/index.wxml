@@ -5,19 +5,33 @@
     <image class='index-bg' src="../../images/index/bg.png"></image>
     <!-- 所有内容 -->
     <view class='wrapper'>
+
+      <!-- 弹窗口 -->
+      <view class='popup-bg' style="display:{{popupShow2}}" bindtap='ctrlPopuplook'></view>
+      <view class='popup' style="display:{{popupShow2}}">
+        <text class='popup-title'>{{curTxt}}</text>
+        <textarea class='my-textarea'>{{remarks}}</textarea>
+      </view>
+
+
       <!-- 弹窗口 -->
       <view class='popup-bg' style="display:{{popupShow}}" bindtap='ctrlPopup'></view>
       <view class='popup' style="display:{{popupShow}}">
         <text class='popup-title'>{{curTxt}}</text>
         <!-- 弹窗表单循环 -->
-        <block wx:for="{{curInputList}}">
-          <input class='my-input' placeholder='{{item.place}}'></input>
-        </block>
-        <view class='btn-area clearfix'>
-          <button type='submit' class='my-btn default' bindtap='ctrlPopup'>完成</button>
-          <button class='my-btn error' bindtap='ctrlPopup'>跳过</button>
-        </view>
+        <form bindsubmit="ctrlPopuptj">
+          <input class='my-input' hidden='true' name='indexx' value='{{indexx}}'></input>
+          <block wx:for="{{curInputList}}">
+            <input class='my-input' name='remarks' value='{{value}}' placeholder='{{item.place}}'></input>
+          </block>
+          <view class='btn-area clearfix'>
+            <button formType="submit" data-id='1' class='my-btn default'>完成</button>
+            <button formType="submit" data-id='2' class='my-btn error'>跳过</button>
+          </view>
+        </form>
       </view>
+
+
       <!-- 题目 -->
       <view class='title' style="display:{{style.titleShow}}">
         <image class='title-img' src='../../images/index/title.png'></image>
@@ -35,24 +49,27 @@
           <!-- 结婚事项 -->
           <scroll-view class="{{tabIndex == 0 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
             <view class="items">
+
               <view wx:for="{{list}}" wx:key="{{index}}">
-                <view wx:if="{{index==0}}" class="item" bindtap="ctrlPopup" data-inputList="{{item.inputList}}" data-txt="{{item.txt}}">
+                <view wx:if="{{index==0}}" class="item" bindtap="ctrlPopup" data-index='{{index}}' data-inputList="{{[{place: '请填写备注'}]}}" data-txt="{{item.title}}">
                   <image class="date-img" src="../../images/icon/date.png"></image>
                   <view class="date-word">
-                    <text>婚前</text>
+                    <text>{{item.num_date>=0?'婚前':'逾期'}}</text>
                   </view>
                   <view class="date-num">
-                    <text style="font-size:30px">{{item.time}}</text>
+                    <text style="font-size:30px">{{item.num_date}}</text>
                     <text>天</text>
                   </view>
-                  <text class='item-txt'>{{item.txt}}</text>
-                  <image class='true' style="margin-top:82rpx;" bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
+                  <text class='item-txt'>{{item.title}}</text>
+                  <image class='true' style="margin-top:82rpx;" bindtap='choose' src="{{item.status==1 ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
                 </view>
-                <view wx:if="{{index!=0}}" class="item" bindtap="ctrlPopup" data-inputList="{{item.inputList}}" data-txt="{{item.txt}}">
-                  <text class="item-time">婚前{{item.time}}天</text>
-                  <text class='item-txt' style="width:270rpx;">{{item.txt}}</text>
-                  <image class='true' bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
+
+                <view wx:if="{{index!=0}}" class="item" bindtap="ctrlPopup" data-index='{{index}}' data-inputList="{{[{place: '请填写备注'}]}}" data-txt="{{item.title}}">
+                  <text class="item-time">{{item.num_date>=0?'婚前':'逾期'}}{{item.num_date}}天</text>
+                  <text class='item-txt' style="width:270rpx;">{{item.title}}</text>
+                  <image class='true' bindtap='choose' src="{{item.status==1 ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
                 </view>
+
               </view>
             </view>
           </scroll-view>
@@ -71,13 +88,15 @@
                   </view>
                 </view>
                 <view wx:for="{{item.expdata}}" wx:key="id" wx:for-item="exp" class='expend-item clear-fix'>
-                  <image class='expend-pic' src='../../images/icon/{{exp.pic}}.png'></image>
+                  <image class='expend-pic' src='../../images/icon/{{exp.icon}}.png'></image>
                   <text class='expend-title'>{{exp.title}}</text>
-                  <text class='expend-num'>{{exp.num}}</text>
+                  <text class='expend-num'>{{exp.price}}</text>
                 </view>
               </view>
             </block>
           </scroll-view>
+
+          
           <!-- 电子请柬 -->
           <scroll-view class="{{tabIndex == 2 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
             <view class='invit-wrap'>
@@ -93,11 +112,11 @@
           <!-- 已完成1 -->
           <scroll-view class="{{tabIndex == 3 ? '' : 'hide'}}" style='height:87%;' scroll-y='true'>
             <view class="items">
-              <view wx:for="{{list}}" wx:key="{{index}}" wx:if="{{item.finish == true}}">
-                <view class="item" bindtap="ctrlPopup">
-                  <text class="item-time">婚前{{item.time}}天</text>
-                  <text class='item-txt' style="width:270rpx;">{{item.txt}}</text>
-                  <image class='true' bindtap='choose' src="{{item.check ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
+              <view wx:for="{{wc_list}}" wx:key="{{index}}">
+                <view class="item" data-index='{{index}}' data-txt="{{item.title}}" bindtap="ctrlPopuplook">
+                  <text class="item-time">婚前{{item.num_date}}天</text>
+                  <text class='item-txt' style="width:270rpx;">{{item.title}}</text>
+                  <image class='true' src="{{item.status==1 ?'../../images/icon/true-active.png':'../../images/icon/true.png'}}"></image>
                 </view>
               </view>
             </view>
@@ -159,12 +178,12 @@
             </view>
             <view data-id='3' class="small-btn {{tabIndex == 3 ? 'active' : ''}}" bindtap='tabShow'>
               <view class="record {{tabIndex == 3 ? 'record-active' : ''}}">
-                <text>已完成<text>0</text>项</text>
+                <text>已完成<text>{{cb_num}}</text>项</text>
               </view>
             </view>
-            <view data-id='4' class="small-btn {{tabIndex == 4 ? 'active' : ''}}" bindtap='tabShow'>
+            <view data-id='1' class="small-btn {{tabIndex == 4 ? 'active' : ''}}" bindtap='tabShow'>
               <view class="record {{tabIndex == 4 ? 'record-active' : ''}}">
-                <text>已完成<text>0</text>笔</text>
+                <text>已完成<text>{{kx_num}}</text>笔</text>
               </view>
             </view>
             <view data-id='5' class="small-btn {{tabIndex == 5 ? 'active' : ''}}" bindtap='tabShow'>

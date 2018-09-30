@@ -8,7 +8,14 @@ Page({
     tabIndex: 9,
     addShow: 'none',
     popupShow: 'none',
-    wid:''
+    popupShow2: 'none',
+    wid:'',
+    list: [],
+    wc_list: [],
+    indexx:'',
+    cb_num:0,
+    kx_num:0,
+    kx_list:[]
   },
 
   onLoad: function(e) {
@@ -20,8 +27,8 @@ Page({
     //假数据填充
     page.setData({
       style: indexData.style,
-      list: indexData.list,
-      expendList: indexData.expendList,
+      // list: indexData.list,
+      //expendList: indexData.expendList,
       invitList: indexData.invitList
     });
     wx.login({
@@ -36,16 +43,16 @@ Page({
             method: 'POST',
             data: {
               code: res.code,
-              openid: 3215644
             },
             success: function (res) {
-              console.log(res)
               if (res.data.code == 200){
                 app.openid = res.data.data.openid
                 app.user = res.data.data.info
                 page.setData({
                   wid: res.data.data.info.wid,
-                  date: res.data.data.info.date,
+                  date: res.data.data.info.wd_date,
+                  cb_num: res.data.data.info.cb_num,
+                  kx_num: res.data.data.info.kx_num,
                 })
               }
               else if (res.data.code == 201){
@@ -63,19 +70,44 @@ Page({
             fail: function () {
               wx.hideLoading()
             }
-
           })
         }
       }
     })
-
-
-
-
   },
+/**
+ * 生命函数
+ * */ 
+    onShow:function(){
+      var page = this
+      var typeid = page.data.tabIndex
 
+      if (typeid!=9){
+        page.tabShow(null, typeid),
+        page.setData({
+          kx_num: page.data.kx_num + app.kx_num
+        })
+      }
+    },
   //切换变化函数
-  tabShow: function(e) {
+  tabShow: function(e,typeid) {
+    if (!app.user.wid) {
+      wx.showToast({
+        title: '请先添加婚礼',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    var page= this
+    var typeID
+    if(e){
+      typeID = e.currentTarget.dataset.id 
+      }else{
+     typeID =  typeid
+      }
+  
     //变化后的样式数组
     var style = {
       titleShow: 'none',
@@ -87,9 +119,63 @@ Page({
       tabPadTop: 20 + 'rpx',
       tabMarTop: 0 + 'rpx'
     };
+    
+    app.util.request({
+      url: 'entry/wxapp/selecttask',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+        openid: app.openid,
+        wid:app.user.wid,
+        type_id: typeID
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200) {
+          if (typeID == 0){
+            page.setData({
+              list: res.data.data,
+            });
+          }
+          if (typeID == 1) {
+            page.setData({
+              expendList: res.data.data,
+            });
+          }
+          if (typeID == 3) {
+            page.setData({
+              wc_list: res.data.data,
+            });
+          }
+      
+        }
+        else if (res.data.code == 201) {
+          wx.showToast({
+            title: '未找到数据',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading()
+      }
+
+    })
     this.setData({
       style: style,
-      tabIndex: e.currentTarget.dataset.id
+      tabIndex: typeID
     });
     this.iconShow();
     this.picShow();
@@ -134,11 +220,11 @@ Page({
   picShow: function() {
     var tabIndex = this.data.tabIndex;
     var that = this;
-    if (tabIndex == 0 || tabIndex == 3) {
+    if (tabIndex == 0) {
       that.setData({
         iconPic: 'add'
       });
-    } else if (tabIndex == 1 || tabIndex == 4) {
+    } else if (tabIndex == 1) {
       that.setData({
         iconPic: 'add1'
       });
@@ -148,20 +234,98 @@ Page({
       });
     }
   },
-
-  //打开关闭弹窗
-  ctrlPopup: function(e) {
-    console.log(e.currentTarget);
-    var cur = e.currentTarget.dataset;
-    if (this.data.popupShow === 'none') {
+  ctrlPopup: function (e) {
+    var page = this
+    console.log(e);
+    var indexx = e.currentTarget.dataset.index
+    var inputlist = e.currentTarget.dataset.inputlist
+    var txt = e.currentTarget.dataset.txt
+   if (this.data.popupShow === 'none') {
       this.setData({
         popupShow: 'block',
-        curTxt: cur.txt,
-        curInputList: cur.inputlist
+        curTxt: txt,
+        curInputList: inputlist,
+        indexx: indexx
       });
     } else {
       this.setData({
         popupShow: 'none'
+      });
+    }
+  },
+  //打开关闭弹窗
+  ctrlPopuptj: function(e) {
+    var page =this
+    console.log(e);
+    var com_id = e.detail.target.dataset.id;
+    var remarks = e.detail.value.remarks;
+    var indexx = e.detail.value.indexx;
+    var itemid = page.data.list[indexx].id 
+    app.util.request({
+      url: 'entry/wxapp/completecase',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+        openid: app.openid,
+        wid: app.user.wid,
+        com_id: com_id,
+        remarks: remarks,
+        caseid: itemid,
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '恭喜完成',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+          page.setData({
+            popupShow: 'none',
+            value:'',
+            cb_num: cb_num+1
+          });
+          page.tabShow(null, 0)
+        }
+        else if (res.data.code == 201) {
+          wx.showToast({
+            title: '未找到数据',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading()
+      }
+    })
+  },
+  ctrlPopuplook:function(e){
+    var page = this
+    console.log(e);
+    var indexx = e.currentTarget.dataset.index
+    var txt = e.currentTarget.dataset.txt
+    if (this.data.popupShow2 === 'none') {
+      this.setData({
+        popupShow2: 'block',
+        curTxt: txt,
+        remarks: page.data.wc_list[indexx].remarks
+      });
+    } else {
+      this.setData({
+        popupShow2: 'none'
       });
     }
   },
@@ -181,14 +345,15 @@ Page({
   toAdd: function(e) {
     var tabIndex = this.data.tabIndex;
     var that = this;
-    if (tabIndex == 0 || tabIndex == 3) {
+    if (tabIndex == 0) {
       wx.navigateTo({
-        url: '../add/add'
+        url: '../add/add?wid=' + app.user.wid
       });
-    } else {
+    } else if (tabIndex == 1) {
       wx.navigateTo({
-        url: '../expend/expend'
+        url: '../expend/expend?wid=' + app.user.wid
       });
     }
   }
+
 });

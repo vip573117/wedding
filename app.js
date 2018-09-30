@@ -9,6 +9,7 @@ App({
   },
   openid: null,
   user: {},
+  kx_num:0,
   onLaunch: function () {
     //调用API从本地缓存中获取数据
   },

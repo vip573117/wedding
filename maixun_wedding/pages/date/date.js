@@ -9,7 +9,6 @@ Page({
     wid:'',
     gender:['我是新娘','我是新郎'],
     index:0,
-    wid:'',
     wedding_info:{},
     myiswho:''
 
@@ -19,11 +18,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    if (month < 10) {
+      month = "0" + month;
+    }
+    if (day < 10) {
+      day = "0" + day;
+    }
+    var nowDate = year + "-" + month + "-" + day;
     console.log(options.wid)
+    console.log('options.wid:' + options.wid)
     var page= this
-    page.setData({
-      wid:options.wid
-    })
+   
+    if (options.wid!='null'){
+      console.log('options.widjinlaile:' + options.wid)
+      page.setData({
+        wid: options.wid,
+      })
+    }else{
+      page.setData({
+        date: nowDate
+      })
+    }
     if (options.wid){
       app.util.request({
         url: 'entry/wxapp/selectwedding',
@@ -64,12 +83,13 @@ Page({
       date: e.detail.value
     });
   },
-  formSubmit:function(){
+  formSubmit:function(e){
     console.log(app.openid)
     var page =this
     var wid= page.data.wid 
     var is_manager = app.user.is_manager
-    if (is_manager == 1) {
+    console.log(wid)
+    if (is_manager == 1 || wid == '') {
       if (page.data.date == '') {
         wx.showToast({
           title: '请选择婚礼日期',

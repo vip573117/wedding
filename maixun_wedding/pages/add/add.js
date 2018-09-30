@@ -1,20 +1,114 @@
 // pages/add/add.js
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    wid:'',
+    startDate:'',
+    endDate:''
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) { },
+  onLoad: function (options) {
+      console.log(options.wid)
+    var page = this
+    page.setData({
+      wid: options.wid
+    })
+   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () { },
+  formSubmit:function(e){
+    console.log(e)
+    var page =this 
+    var wid = e.detail.value.wid
+    var title = e.detail.value.title
+    var content = e.detail.value.remarks
+    var startDate = page.data.startDate
+    var endDate = page.data.endDate
+    if (title==''){
+      wx.showToast({
+        title: '名称不能为空',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (startDate == '') {
+      wx.showToast({
+        title: '开始时间不能为空',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (endDate == '') {
+      wx.showToast({
+        title: '结束时间',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    app.util.request({
+      url: 'entry/wxapp/addcase',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+        openid: app.openid,
+        wid: wid,
+        title: title,
+        content: content,
+        startDate: startDate,
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200) {
+          wx.showToast({
+            title: '添加成功',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+          setTimeout(function(){
+            wx.navigateBack({
+              delta: 1
+            })
+          },2000)
+        
+        }
+        else if (res.data.code == 201) {
+          wx.showToast({
+            title: '未找到数据',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading()
+      }
+    })
 
+
+    },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -62,9 +156,9 @@ Page({
       endDate: e.detail.value
     });
   },
-  toIndex: function () {
-    wx.redirectTo({
-      url: '/pages/index/index?redIndex=9'
-    });
-  }
+  // toIndex: function () {
+  //   wx.redirectTo({
+  //     url: '/pages/index/index?redIndex=9'
+  //   });
+  // }
 });

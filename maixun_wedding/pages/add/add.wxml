@@ -6,7 +6,7 @@
       <view class='item'>
         <image class="left-icon" style="" src="../../images/icon/folder.png"></image>
         <text class='title'>事项名称</text>
-        <input class='input' placeholder='点击输入' name="bride" value="{{ value }}"></input>
+        <input class='input' placeholder='点击输入' name="title" ></input>
       </view>
       <picker mode="date" value="{{startDate}}" bindchange="bindStartDateChange">
         <view class='item'>
@@ -25,7 +25,7 @@
     </view>
     <view class="group">
       <view class="item clearfix">
-        <textarea class="my-area float-left" name="" id="" cols="25" rows="10" placeholder="备注信息"></textarea>
+        <textarea class="my-area float-left" name="remarks" id="" cols="25" rows="10" placeholder="备注信息"></textarea>
       </view>
     </view>
     <view class="wrap">
