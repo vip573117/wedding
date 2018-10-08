@@ -190,7 +190,7 @@ Page({
       //显示选项表单
       formBgShow: 'none',
       //底部导航栏样式
-      tabTop: 42 + '%',
+      tabTop: 550 + 'rpx',
       tabPadTop: 130 + 'rpx',
       tabMarTop: 0 + 'rpx'
     };
