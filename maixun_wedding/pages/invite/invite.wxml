@@ -1,0 +1,55 @@
+<!--maixun_wedding/pages/invite/invite.wxml-->
+
+<view>
+  <image class='invite-bg' src='../../images/invit/invit-bg.png'></image>
+</view>
+
+<view class='invite-wrap word-poi'>
+  <view>
+    <text>2018年10月1日</text>
+  </view>
+  <view>
+    <text>春娇</text>
+    <text> & </text>
+    <text>志名</text>
+  </view>
+  <view>
+    <text>唯美浪漫婚礼秀</text>
+  </view>
+</view>
+
+<view class='invite-wrap form-poi'>
+  <view class='invite-form'>
+
+    <view class='invite-input clearfix'>
+      <view class='input-label'>姓名</view>
+      <view class='input'>
+        <input placeholder="请输入姓名" type='text' />
+      </view>
+    </view>
+
+    <view class='invite-input clearfix'>
+      <view class='input-label'>电话</view>
+      <view class='input'>
+        <input placeholder="请输入电话" type='num' />
+      </view>
+    </view>
+
+    <view class='invite-input clearfix' style='margin-bottom:0'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{gender}}">
+        <text>你是新娘还是新郎？</text>
+        <text class='answer'>{{gender[index]}}</text>
+        <image class='arrow' src='../../images/icon/arrow.png'></image>
+      </picker>
+    </view>
+
+  </view>
+</view>
+
+<view class='invite-wrap pic-poi'>
+  <image class="invite-pic" src="../../images/invit/invit-btn.png"></image>
+</view>
+
+<view class="invite-wrap btn-poi">
+  <button class="invite-btn" formType="submit" bindtap='test'></button>
+</view>

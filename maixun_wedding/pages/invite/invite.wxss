@@ -1,0 +1,91 @@
+/* maixun_wedding/pages/invite/invite.wxss */
+
+view {
+  box-sizing: border-box;
+}
+
+.invite-bg {
+  width: 750rpx;
+  height: 331rpx;
+}
+
+.invite-wrap {
+  width: 100%;
+  position: absolute;
+}
+
+.word-poi {
+  top: 70rpx;
+  color: #fff;
+}
+
+.word-poi view {
+  text-align: center;
+}
+
+.form-poi {
+  top: 300rpx;
+}
+
+.invite-form {
+  padding: 80rpx 30rpx;
+  background-color: #fff;
+  border-radius: 6px;
+  margin: 0 auto;
+  width: 92%;
+}
+
+.invite-input {
+  background-color: #f2f2f2;
+  width: 100%;
+  padding: 20rpx 40rpx;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin-bottom: 30rpx;
+}
+
+.invite-input view {
+  float: left;
+}
+
+.input-label {
+  width: 25%;
+}
+
+.input {
+  width: 70%;
+  margin-top: 5rpx;
+}
+
+.answer {
+  color: #b9b9b9;
+}
+
+.arrow {
+  float: right;
+  width: 18rpx;
+  height: 32rpx;
+  margin-top: 12rpx;
+}
+
+.pic-poi{
+  top: 880rpx;
+  text-align: center;
+}
+
+.invite-pic{
+  width: 690rpx;
+  height: 87rpx;
+}
+
+.btn-poi{
+  top: 880rpx;
+}
+
+.invite-btn{
+  width: 690rpx;
+  height: 87rpx;
+  margin: 0 auto;
+  opacity: 0;
+  /* background-color: #222; */
+}
