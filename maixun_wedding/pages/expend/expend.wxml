@@ -18,7 +18,7 @@
   <view class="expend-wrap" style="display:{{display}}">
     <view class="expend-item clearfix">
       <image class="icon expend-icon" wx:if="{{id!=-1}}" src="http://www.pengkai.com/attachment/{{curPic}}"></image>
-         <image class="icon expend-icon" wx:if="{{id==-1}}" src="../../images/icon/custom.png"></image>
+      <image class="icon expend-icon" wx:if="{{id==-1}}" src="../../images/icon/custom.png"></image>
       <view class="expend clearfix">
         <input class="icon-input" type="text" name="title" value="{{curTxt}}" placeholder='{{zdy}}' disabled="{{disabled}}" />
         <view class="right-input">
@@ -29,8 +29,8 @@
   </view>
   <view class="submit-wrap" style="display:{{display}}">
     <image class="submit-pic" src="../../images/index/submit.png"></image>
-  </view>
-  <view class="btn-wrap">
-    <button class="submit-btn" formType="submit"></button>
+    <view class="btn-wrap">
+      <button class="submit-btn" formType="submit"></button>
+    </view>
   </view>
 </form>

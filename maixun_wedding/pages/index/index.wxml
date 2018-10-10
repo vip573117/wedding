@@ -52,7 +52,7 @@
           </view>
           <view class='setting' bindtap="toDate">修改设置</view>
         </view>
-      </view> 
+      </view>
       <!-- 表单展开背景 -->
       <view class='form-wrap'>
         <view class='form-bg' style='display:{{style.formBgShow}}'>
@@ -186,21 +186,22 @@
               <image class='tab-pic' src="{{tabIndex == 2 ?'../../images/icon/msg-ac.png' :'../../images/icon/msg.png'}}"></image>
               <text class='tab-word'>电子请柬</text>
             </view>
-            <view data-id='3' class="small-btn {{tabIndex == 3 ? 'active' : ''}}" bindtap='tabShow'>
-              <view class="record {{tabIndex == 3 ? 'record-active' : ''}}">
-                <text>已完成<text>{{cb_num}}</text>项</text>
+            <view class='clearfix'>
+              <view data-id='3' class="small-btn {{tabIndex == 3 ? 'active' : ''}}" bindtap='tabShow'>
+                <view class="record {{tabIndex == 3 ? 'record-active' : ''}}">
+                  <text>已完成<text>{{cb_num}}</text>项</text>
+                </view>
+              </view>
+              <view data-id='1' class="small-btn {{tabIndex == 4 ? 'active' : ''}}" bindtap='tabShow'>
+                <view class="record {{tabIndex == 4 ? 'record-active' : ''}}">
+                  <text>已完成<text>{{kx_num}}</text>笔</text>
+                </view>
+              </view>
+              <view class='small-btn'>
+                <button data-id='5' class='record share-btn' open-type="share">邀请</button>
               </view>
             </view>
-            <view data-id='1' class="small-btn {{tabIndex == 4 ? 'active' : ''}}" bindtap='tabShow'>
-              <view class="record {{tabIndex == 4 ? 'record-active' : ''}}">
-                <text>已完成<text>{{kx_num}}</text>笔</text>
-              </view>
-            </view>
-            <button data-id='5' class="small-btn {{tabIndex == 5 ? 'active' : ''}}" open-type="share">
-              <view class="record {{tabIndex == 5 ? 'record-active' : ''}}">
-                <text>邀请</text>
-              </view>
-            </button>
+
           </view>
         </view>
       </view>

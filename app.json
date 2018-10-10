@@ -10,8 +10,7 @@
     "we7_wxappdemo/pages/index/index",
     "we7_wxappdemo/pages/footer/footer",
     "we7_wxappdemo/pages/pay/pay",
-    "we7/pages/user/index/index",
-    "maixun_wedding/pages/invite/invite"
+    "we7/pages/user/index/index"
   ],
   "window": {
     "navigationBarTextStyle": "white",

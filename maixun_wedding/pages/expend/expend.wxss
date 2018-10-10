@@ -51,6 +51,7 @@ page {
   width: 100%;
   margin-top: 50rpx;
   text-align: center;
+  position: relative;
 }
 
 .submit-pic {
@@ -60,7 +61,7 @@ page {
 
 .btn-wrap {
   position: absolute;
-  top: 740rpx;
+  top: 0rpx;
   width: 100%;
   z-index: 2;
 }
