@@ -17,9 +17,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      iconList: expendData.iconList
-    });
+    var page = this 
+    app.util.request({
+      url: 'entry/wxapp/selectitem',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.data.code == 200) {
+          page.setData({
+            iconList: res.data.data
+          });
+        }
+        else if (res.data.code == 201) {
+          wx.showToast({
+            title: '未找到数据',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
+        }
+      },
+      fail: function () {
+        wx.hideLoading()
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面显示

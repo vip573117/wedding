@@ -69,9 +69,16 @@
 					"query": ""
 				},
 				{
+<<<<<<< HEAD
 					"id": -1,
 					"name": "invite",
 					"pathName": "maixun_wedding/pages/invite/invite"
+=======
+					"id": 5,
+					"name": "invite",
+					"pathName": "maixun_wedding/pages/invite/invite",
+					"query": "wid=1"
+>>>>>>> 1e9dfad3bfaf9cff07526f0d38e941d47b914cce
 				}
 			]
 		}

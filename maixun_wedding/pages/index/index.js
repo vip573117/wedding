@@ -15,7 +15,9 @@ Page({
     indexx:'',
     cb_num:0,
     kx_num:0,
-    kx_list:[]
+    kx_list:[],
+    show1:false,
+    show2:true
   },
 
   onLoad: function(e) {
@@ -53,6 +55,9 @@ Page({
                   date: res.data.data.info.wd_date,
                   cb_num: res.data.data.info.cb_num,
                   kx_num: res.data.data.info.kx_num,
+                  show1:true,
+                  show2:false,
+                  showdate: res.data.data.info.wd_time
                 })
               }
               else if (res.data.code == 201){
@@ -179,6 +184,21 @@ Page({
     });
     this.iconShow();
     this.picShow();
+  },
+
+    //跳转邀请页面
+  // goinvite:function(e){
+  //   wx.navigateTo({
+  //     url: '../invite/invite?wid=' + app.user.wid
+  //   });
+  // },
+  onShareAppMessage: function (res) {
+    var page = this
+    console.log('/pages/invite/invite?wid=' + app.user.wid)
+      return {
+        title: app.user.role+' '+app.user.name+'的邀请',
+        path: '/pages/invite/invite'
+      }
   },
 
   //返回首页函数

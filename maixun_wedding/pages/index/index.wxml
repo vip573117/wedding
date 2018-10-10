@@ -39,19 +39,19 @@
       <!-- 时间 -->
       <view class='time-wrap'>
 
-        <view class='time' style='padding-top:{{style.timePdTop}};padding-bottom:{{style.timePdBot}}'>
+        <view hidden='{{show1}}' class='time' style='padding-top:{{style.timePdTop}};padding-bottom:{{style.timePdBot}}'>
           <text class='time-word' bindtap="toIndex">您还未设置您的婚礼信息</text>
           <view class='setting' bindtap="toDate">前往设置</view>
         </view>
 
-        <!-- <view class='time' style='padding-top:{{style.timePdTop}};padding-bottom:{{style.timePdBot}}'>
+        <view class='time' hidden='{{show2}}' style='padding-top:{{style.timePdTop}};padding-bottom:{{style.timePdBot}}'>
           <view class='' bindtap="toIndex" style='color:#222;display:inline-block;vertical-align-middle'>
             <text>距婚礼完成时间还有：</text>
-            <text style='font-size:1rem;color:#97c2fa'>23</text>
+            <text style='font-size:1rem;color:#97c2fa'>{{showdate}}</text>
             <text>  天</text>
           </view>
           <view class='setting' bindtap="toDate">修改设置</view>
-        </view> -->
+        </view>
       </view> 
       <!-- 表单展开背景 -->
       <view class='form-wrap'>
@@ -98,7 +98,7 @@
                   </view>
                 </view>
                 <view wx:for="{{item.expdata}}" wx:key="id" wx:for-item="exp" class='expend-item clear-fix'>
-                  <image class='expend-pic' src='../../images/icon/{{exp.icon}}.png'></image>
+                  <image class='expend-pic' src='http://www.pengkai.com/attachment/{{exp.icon}}'></image>
                   <text class='expend-title'>{{exp.title}}</text>
                   <text class='expend-num'>{{exp.price}}</text>
                 </view>
@@ -196,11 +196,11 @@
                 <text>已完成<text>{{kx_num}}</text>笔</text>
               </view>
             </view>
-            <view data-id='5' class="small-btn {{tabIndex == 5 ? 'active' : ''}}" bindtap='tabShow'>
+            <button data-id='5' class="small-btn {{tabIndex == 5 ? 'active' : ''}}" open-type="share">
               <view class="record {{tabIndex == 5 ? 'record-active' : ''}}">
-                <text>已完成<text>0</text>次</text>
+                <text>邀请</text>
               </view>
-            </view>
+            </button>
           </view>
         </view>
       </view>
