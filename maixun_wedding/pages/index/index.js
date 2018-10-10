@@ -187,12 +187,19 @@ Page({
   },
 
     //跳转邀请页面
-  goinvite:function(e){
-    wx.navigateTo({
-      url: '../invite/invite?wid=' + app.user.wid
-    });
+  // goinvite:function(e){
+  //   wx.navigateTo({
+  //     url: '../invite/invite?wid=' + app.user.wid
+  //   });
+  // },
+  onShareAppMessage: function (res) {
+    var page = this
+    console.log('/pages/invite/invite?wid=' + app.user.wid)
+      return {
+        title: app.user.role+' '+app.user.name+'的邀请',
+        path: '/pages/invite/invite'
+      }
   },
-
 
   //返回首页函数
   toIndex: function() {

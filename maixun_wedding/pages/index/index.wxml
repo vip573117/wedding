@@ -196,11 +196,11 @@
                 <text>已完成<text>{{kx_num}}</text>笔</text>
               </view>
             </view>
-            <view data-id='5' class="small-btn {{tabIndex == 5 ? 'active' : ''}}" bindtap='goinvite'>
+            <button data-id='5' class="small-btn {{tabIndex == 5 ? 'active' : ''}}" open-type="share">
               <view class="record {{tabIndex == 5 ? 'record-active' : ''}}">
                 <text>邀请</text>
               </view>
-            </view>
+            </button>
           </view>
         </view>
       </view>
