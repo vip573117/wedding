@@ -55,6 +55,7 @@ App({
   },
   globalData: {
     userInfo: null,
+    gloabalFomIds: []
   },
   siteInfo: {
     'uniacid': '2',

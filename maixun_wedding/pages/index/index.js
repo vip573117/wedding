@@ -50,15 +50,25 @@ Page({
               if (res.data.code == 200){
                 app.openid = res.data.data.openid
                 app.user = res.data.data.info
-                page.setData({
-                  wid: res.data.data.info.wid,
-                  date: res.data.data.info.wd_date,
-                  cb_num: res.data.data.info.cb_num,
-                  kx_num: res.data.data.info.kx_num,
-                  show1:true,
-                  show2:false,
-                  showdate: res.data.data.info.wd_time
-                })
+
+                if (res.data.data.info.wid){
+                  page.setData({
+                    wid: res.data.data.info.wid,
+                    date: res.data.data.info.wd_date,
+                    cb_num: res.data.data.info.cb_num,
+                    kx_num: res.data.data.info.kx_num,
+                    show1: true,
+                    show2: false,
+                    showdate: res.data.data.info.wd_time
+                  })
+                }else{
+                  page.setData({
+                    cb_num: res.data.data.info.cb_num,
+                    kx_num: res.data.data.info.kx_num,
+                    show1: false,
+                    show2: true,
+                  })
+                }
               }
               else if (res.data.code == 201){
                 app.openid = res.data.data.openid
@@ -221,6 +231,32 @@ Page({
     });
   },
 
+  // 提交formID
+  formSubmit:function(e){
+    console.log(app.globalData.userInfo)
+
+    let formId = e.detail.formId;
+    console.log(formId)
+    var page = this
+    var buttype = e.detail.target.dataset.buttype
+    formId = 123456
+    page.dealFormIds(formId);
+    page.saveFormIds()
+  },
+
+  //处理formid
+  dealFormIds: function (formId) {
+    app.formidtype = 1
+    let formIds = app.globalData.gloabalFomIds;//获取全局数据中的推送码gloabalFomIds数组
+    if (!formIds) formIds = [];
+    // let data = {
+    //   formId: formId,
+    //   // expire: parseInt(new Date().getTime() / 1000) + 604800 //计算7天后的过期时间时间戳
+    // }
+    formIds.push(formId);//将data添加到数组的末尾
+    app.globalData.gloabalFomIds = formIds; //保存推送码并赋值给全局变量
+  },
+
   // 显示添加事项函数
   iconShow: function(e) {
     var tabIndex = this.data.tabIndex;
@@ -374,6 +410,32 @@ Page({
         url: '../expend/expend?wid=' + app.user.wid
       });
     }
-  }
-
+  },
+  //上传处理formid
+  saveFormIds: function () {
+    var formIds = app.globalData.gloabalFomIds; // 获取gloabalFomIds
+    if (formIds.length) {//gloabalFomIds存在的情况下 将数组转换为JSON字符串
+      formIds = JSON.stringify(formIds);
+      app.globalData.gloabalFomIds = '';
+    }
+    app.util.request({
+      url: 'entry/wxapp/saveFormIds',
+      method: 'POST',
+      header: {
+   'content-type': 'application/x-www-form-urlencoded'
+        //'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+        openId: app.openid,
+        formIds: formIds
+      },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function () {
+        wx.hideLoading()
+      }
+    })
+  },
 });

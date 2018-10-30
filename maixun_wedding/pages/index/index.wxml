@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <view class="container">
-  <form>
+  <form bindsubmit="formSubmit" report-submit='true'>
     <!-- 背景 -->
     <image class='index-bg' src="../../images/index/bg.png"></image>
     <!-- 所有内容 -->
@@ -45,10 +45,14 @@
         </view>
 
         <view class='time' hidden='{{show2}}' style='padding-top:{{style.timePdTop}};padding-bottom:{{style.timePdBot}}'>
-          <view class='' bindtap="toIndex" style='color:#222;display:inline-block;vertical-align-middle'>
+          <view class='' wx:if="{{showdate!=0}}" bindtap="toIndex" style='color:#222;display:inline-block;vertical-align-middle'>
             <text>距婚礼完成时间还有：</text>
             <text style='font-size:1rem;color:#97c2fa'>{{showdate}}</text>
             <text>  天</text>
+          </view>
+            <view class='' wx:if="{{showdate==0}}" bindtap="toIndex" style='color:#222;display:inline-block;vertical-align-middle'>
+            <text style='margin-left:50rpx;'>      婚礼： </text>
+            <text style='font-size:1rem;color:#97c2fa'>已完成</text>
           </view>
           <view class='setting' bindtap="toDate">修改设置</view>
         </view>
@@ -174,10 +178,10 @@
       <view class='tab-wrap' style="top:{{style.tabTop}};">
         <view class='tab-bg' style='padding-top:{{style.tabPadTop}}'>
           <view class='tab'>
-            <view data-id='0' class="tab-item {{tabIndex == 0 ? 'active' : ''}}" bindtap='tabShow'>
+            <button data-id='0' class="tab-item {{tabIndex == 0 ? 'active' : ''}}"  formType="submit">
               <image class='tab-pic' src="{{tabIndex == 0 ?'../../images/icon/item-ac.png':'../../images/icon/item.png'}}"></image>
               <text class='tab-word'>结婚事项</text>
-            </view>
+           </button>
             <view data-id='1' class="tab-item {{tabIndex == 1 ? 'active' : ''}}" bindtap='tabShow'>
               <image class='tab-pic' src="{{tabIndex == 1 ?'../../images/icon/cal-ac.png' :'../../images/icon/cal.png'}}"></image>
               <text class='tab-word'>开销记录</text>
